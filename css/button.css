@@ -1,0 +1,27 @@
+@font-face {
+font-family: prstart;
+src: url("font/prstart.ttf");
+}
+
+body{
+	font-family: prstart;
+}
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+.btn {
+    background-color: #9C3737;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

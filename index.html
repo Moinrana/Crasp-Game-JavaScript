@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	 <title>Craps</title>
+  </head>
+  <link rel="stylesheet" type="text/css" href="css/button.css">
+  <body>
+     <center>
+			 <div id="ImageLoad">
+				  Loading image
+			 </div>
+			 <div id ="LoadAnimation" style="display:none"><img src = "images/dice_roll.gif">
+			     Loading.....
+			 </div>
+			 
+			 <div id="ButtonLoad">
+				<input type="button" class="btn" name="selectButton" onclick="show()" value="Roll a Dice">
+				<input type="button" class="btn" name="clearButton" onclick="resetGame()" value="Reset Game">
+			 </div>
+     </center>
+	 
+ <script type="text/javascript">
+    var dice1;
+	var dice2;
+	var totalNumber;
+	var counter=0;
+	var point;
+	var counter1=0;
+	function show()
+	{
+		document.getElementById("LoadAnimation").style.display="block";
+		setTimeout("hide()", 5000);  // 5 seconds
+    }
+	function hide() 
+	{
+        document.getElementById("LoadAnimation").style.display="none";
+		rollDice();
+    }
+	function rollDice(){
+	        //show();
+		if(counter>0)
+			{
+				secondDice(totalNumber);
+			}
+			else
+			{
+				dice1=Math.floor((Math.random() * 6) + 1);
+				dice2=Math.floor((Math.random() * 6) + 1);
+				
+				totalNumber=dice1+dice2;
+				if(totalNumber == 2 || totalNumber == 3 || totalNumber == 12){
+						document.getElementById("ImageLoad").innerHTML = "Sorry! You loose the game<br><img src='images/" + dice1 + ".png'/><br> and second dice is <br><img src='images/" + dice2 + ".png'/> <br>and total is " + totalNumber;
+					} else if(totalNumber == 7 || totalNumber == 11){
+						document.getElementById("ImageLoad").innerHTML = "Hurrahhh ! You win the board... Your first dice is <br><img src='images/" + dice1 + ".png'/> <br>and second dice is <br><img src='images/" + dice2 + ".png'/> <br>and total is " + totalNumber;
+					} else {
+						document.getElementById("ImageLoad").innerHTML = "Your first dice is <br><img src='images/" + dice1 + ".png'/> <br>and second dice is <br><img src='images/" + dice2 + ".png'/> <br>and total is " + totalNumber;
+						counter++;
+						point = totalNumber;
+					}
+			}
+	
+	}
+	
+	function secondDice()
+	{
+	    dice1=Math.floor((Math.random() * 6) + 1);
+		dice2=Math.floor((Math.random() * 6) + 1);
+
+		totalNumber = dice1 + dice2;
+
+		if(totalNumber == 7 || totalNumber == 11){
+			counter = point;
+			resetGame();
+		} else if(totalNumber == point) {
+			document.getElementById("ImageLoad").innerHTML = "Hurrahhh ! You win the board...Your first dice is <br><img src='images/" + dice1 + ".png'/> <br>and second dice is <br><img src='images/" + dice2 + ".png'/> <br>and total is " + totalNumber;
+		} else {
+			document.getElementById("ImageLoad").innerHTML = "Your first dice is <br><img src='images/" + dice1 + ".png'/><br> and second dice is <br><img src='images/" + dice2 + ".png'/> <br>and total is " + totalNumber + ". Let's try again..."  + ". It should be " + point;
+				counter++;
+		}
+	}
+	function resetGame()
+	{
+	    if(counter>0)
+		{
+			document.getElementById("ImageLoad").innerHTML = "Sorry ! You loose... Your first dice is <br><img src='images/" + dice1 + ".png'/> <br>and second dice is <br><img src='images/" + dice2 + ".png'/> <br>and total is " + totalNumber + ". It should be " + counter + "<br> Game is ready to play again...";
+		} else 
+		{
+			document.getElementById("ImageLoad").innerHTML = "Game Reset! Game is ready to play again...";
+		}
+
+		dice1 = 0;
+		dice2 = 0;
+		totalNumber = 0;
+		counter = 0;	
+	}
+ </script>
+    
+  </body>
+  
+</html>
